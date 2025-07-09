@@ -14,7 +14,319 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bill_items: {
+        Row: {
+          bill_id: string
+          created_at: string
+          id: string
+          product_id: string
+          quantity: number
+          total_price: number
+          unit_price: number
+        }
+        Insert: {
+          bill_id: string
+          created_at?: string
+          id?: string
+          product_id: string
+          quantity: number
+          total_price: number
+          unit_price: number
+        }
+        Update: {
+          bill_id?: string
+          created_at?: string
+          id?: string
+          product_id?: string
+          quantity?: number
+          total_price?: number
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bill_items_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bill_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bills: {
+        Row: {
+          bill_number: string
+          created_at: string
+          discount_amount: number | null
+          due_date: string | null
+          farmer_id: string
+          final_amount: number
+          id: string
+          payment_status: Database["public"]["Enums"]["payment_status"] | null
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          bill_number: string
+          created_at?: string
+          discount_amount?: number | null
+          due_date?: string | null
+          farmer_id: string
+          final_amount: number
+          id?: string
+          payment_status?: Database["public"]["Enums"]["payment_status"] | null
+          total_amount: number
+          updated_at?: string
+        }
+        Update: {
+          bill_number?: string
+          created_at?: string
+          discount_amount?: number | null
+          due_date?: string | null
+          farmer_id?: string
+          final_amount?: number
+          id?: string
+          payment_status?: Database["public"]["Enums"]["payment_status"] | null
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bills_farmer_id_fkey"
+            columns: ["farmer_id"]
+            isOneToOne: false
+            referencedRelation: "farmers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      customer_accounts: {
+        Row: {
+          created_at: string
+          current_balance: number | null
+          farmer_id: string
+          id: string
+          interest_rate: number | null
+          last_payment_date: string | null
+          total_credit_limit: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_balance?: number | null
+          farmer_id: string
+          id?: string
+          interest_rate?: number | null
+          last_payment_date?: string | null
+          total_credit_limit?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_balance?: number | null
+          farmer_id?: string
+          id?: string
+          interest_rate?: number | null
+          last_payment_date?: string | null
+          total_credit_limit?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "customer_accounts_farmer_id_fkey"
+            columns: ["farmer_id"]
+            isOneToOne: true
+            referencedRelation: "farmers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      farmers: {
+        Row: {
+          aadhar_number: string | null
+          address: string | null
+          created_at: string
+          district: string | null
+          id: string
+          name: string
+          phone: string | null
+          pincode: string | null
+          state: string | null
+          updated_at: string
+          village: string | null
+        }
+        Insert: {
+          aadhar_number?: string | null
+          address?: string | null
+          created_at?: string
+          district?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          pincode?: string | null
+          state?: string | null
+          updated_at?: string
+          village?: string | null
+        }
+        Update: {
+          aadhar_number?: string | null
+          address?: string | null
+          created_at?: string
+          district?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          pincode?: string | null
+          state?: string | null
+          updated_at?: string
+          village?: string | null
+        }
+        Relationships: []
+      }
+      interest_charges: {
+        Row: {
+          bill_id: string | null
+          charge_date: string
+          created_at: string
+          farmer_id: string
+          id: string
+          interest_amount: number
+          interest_rate: number
+          principal_amount: number
+        }
+        Insert: {
+          bill_id?: string | null
+          charge_date?: string
+          created_at?: string
+          farmer_id: string
+          id?: string
+          interest_amount: number
+          interest_rate: number
+          principal_amount: number
+        }
+        Update: {
+          bill_id?: string | null
+          charge_date?: string
+          created_at?: string
+          farmer_id?: string
+          id?: string
+          interest_amount?: number
+          interest_rate?: number
+          principal_amount?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interest_charges_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interest_charges_farmer_id_fkey"
+            columns: ["farmer_id"]
+            isOneToOne: false
+            referencedRelation: "farmers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payments: {
+        Row: {
+          amount_paid: number
+          bill_id: string
+          created_at: string
+          farmer_id: string
+          id: string
+          notes: string | null
+          payment_date: string
+          payment_method: string | null
+        }
+        Insert: {
+          amount_paid: number
+          bill_id: string
+          created_at?: string
+          farmer_id: string
+          id?: string
+          notes?: string | null
+          payment_date?: string
+          payment_method?: string | null
+        }
+        Update: {
+          amount_paid?: number
+          bill_id?: string
+          created_at?: string
+          farmer_id?: string
+          id?: string
+          notes?: string | null
+          payment_date?: string
+          payment_method?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payments_farmer_id_fkey"
+            columns: ["farmer_id"]
+            isOneToOne: false
+            referencedRelation: "farmers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          brand: string | null
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          price_per_unit: number
+          reorder_level: number | null
+          stock_quantity: number
+          type: Database["public"]["Enums"]["product_type"]
+          unit: string
+          updated_at: string
+        }
+        Insert: {
+          brand?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          price_per_unit: number
+          reorder_level?: number | null
+          stock_quantity?: number
+          type: Database["public"]["Enums"]["product_type"]
+          unit?: string
+          updated_at?: string
+        }
+        Update: {
+          brand?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          price_per_unit?: number
+          reorder_level?: number | null
+          stock_quantity?: number
+          type?: Database["public"]["Enums"]["product_type"]
+          unit?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +335,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      payment_status: "paid" | "partial" | "pending"
+      product_type: "insecticide" | "pesticide" | "fertilizer"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +463,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      payment_status: ["paid", "partial", "pending"],
+      product_type: ["insecticide", "pesticide", "fertilizer"],
+    },
   },
 } as const

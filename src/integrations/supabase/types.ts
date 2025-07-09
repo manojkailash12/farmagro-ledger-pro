@@ -71,6 +71,7 @@ export type Database = {
           payment_status: Database["public"]["Enums"]["payment_status"] | null
           total_amount: number
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           bill_number: string
@@ -83,6 +84,7 @@ export type Database = {
           payment_status?: Database["public"]["Enums"]["payment_status"] | null
           total_amount: number
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           bill_number?: string
@@ -95,6 +97,7 @@ export type Database = {
           payment_status?: Database["public"]["Enums"]["payment_status"] | null
           total_amount?: number
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -116,6 +119,7 @@ export type Database = {
           last_payment_date: string | null
           total_credit_limit: number | null
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -126,6 +130,7 @@ export type Database = {
           last_payment_date?: string | null
           total_credit_limit?: number | null
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -136,6 +141,7 @@ export type Database = {
           last_payment_date?: string | null
           total_credit_limit?: number | null
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -159,6 +165,7 @@ export type Database = {
           pincode: string | null
           state: string | null
           updated_at: string
+          user_id: string | null
           village: string | null
         }
         Insert: {
@@ -172,6 +179,7 @@ export type Database = {
           pincode?: string | null
           state?: string | null
           updated_at?: string
+          user_id?: string | null
           village?: string | null
         }
         Update: {
@@ -185,6 +193,7 @@ export type Database = {
           pincode?: string | null
           state?: string | null
           updated_at?: string
+          user_id?: string | null
           village?: string | null
         }
         Relationships: []
@@ -199,6 +208,7 @@ export type Database = {
           interest_amount: number
           interest_rate: number
           principal_amount: number
+          user_id: string | null
         }
         Insert: {
           bill_id?: string | null
@@ -209,6 +219,7 @@ export type Database = {
           interest_amount: number
           interest_rate: number
           principal_amount: number
+          user_id?: string | null
         }
         Update: {
           bill_id?: string | null
@@ -219,6 +230,7 @@ export type Database = {
           interest_amount?: number
           interest_rate?: number
           principal_amount?: number
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -247,6 +259,7 @@ export type Database = {
           notes: string | null
           payment_date: string
           payment_method: string | null
+          user_id: string | null
         }
         Insert: {
           amount_paid: number
@@ -257,6 +270,7 @@ export type Database = {
           notes?: string | null
           payment_date?: string
           payment_method?: string | null
+          user_id?: string | null
         }
         Update: {
           amount_paid?: number
@@ -267,6 +281,7 @@ export type Database = {
           notes?: string | null
           payment_date?: string
           payment_method?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -298,6 +313,7 @@ export type Database = {
           type: Database["public"]["Enums"]["product_type"]
           unit: string
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           brand?: string | null
@@ -311,6 +327,7 @@ export type Database = {
           type: Database["public"]["Enums"]["product_type"]
           unit?: string
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           brand?: string | null
@@ -324,6 +341,40 @@ export type Database = {
           type?: Database["public"]["Enums"]["product_type"]
           unit?: string
           updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          created_at: string
+          id: string
+          owner_name: string | null
+          phone: string | null
+          shop_name: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          id?: string
+          owner_name?: string | null
+          phone?: string | null
+          shop_name?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          id?: string
+          owner_name?: string | null
+          phone?: string | null
+          shop_name?: string | null
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
